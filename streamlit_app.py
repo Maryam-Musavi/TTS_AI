@@ -1,5 +1,5 @@
 """
-Streamlit Excel Q&A Chatbot - Final Version
+Streamlit Excel Q&A Chatbot - Final Version (Text-to-Python Engine)
 """
 
 import json
@@ -12,7 +12,7 @@ import ollama_utility
 # =========================
 # Config
 # =========================
-MODEL_NAME = "qwen2.5:7b"
+MODEL_NAME = "llama3.1:8b"
 BASE_URL = "http://127.0.0.1:11434"
 TEMPERATURE = 0.1
 
@@ -20,35 +20,6 @@ POSSIBLE_PROVINCE_COLUMNS = [
     "استان", "شهر", "محل", "آدرس", "موقعیت", "منطقه",
     "واحد درخواست کننده", "نام متقاضی",
 ]
-
-SYSTEM_PROMPT_TEMPLATE = """You are a data assistant. Answer questions about an Excel file using the sections below.
-
-## STATISTICS (pre-calculated, 100% accurate - use ONLY for counting questions)
-{stats_text}
-
-## DATA COLUMNS
-{all_columns}
-
-## FULL DATA (use for detail questions about names, actions, dates)
-{full_data}
-
-## STRICT RULES
-Rule 1: Questions about COUNT or HOW MANY → copy the number directly from STATISTICS. Never count rows yourself.
-Rule 2: Questions about WHO or NAMES → search FULL DATA and list names.
-Rule 3: Questions about ACTIONS or DATES → search FULL DATA and list details.
-Rule 4: Never say information is missing if it exists in STATISTICS or FULL DATA.
-Rule 5: Always answer in Farsi (Persian).
-
-## EXAMPLES
-Q: از استان بوشهر چند تماس داریم؟
-A: طبق آمار، از استان بوشهر: 2 تماس داریم.
-
-Q: چه کسانی از بوشهر تماس گرفتند؟
-A: از FULL DATA، افراد تماس گیرنده از بوشهر: [اسامی از داده]
-
-Q: اقدامات انجام شده برای آقای X چیست؟
-A: از FULL DATA، اقدامات برای آقای X: [اقدامات از داده]
-"""
 
 # =========================
 # Province keywords for smart routing
@@ -95,12 +66,12 @@ def answer_count_directly(question: str, data_summary: dict) -> str | None:
         count = data_summary["provinces_count"].get(province, 0)
         return f"از استان {province}، **{count} تماس گیرنده** داریم."
 
+    # کلمه کلیدی عمومی "استان" از اینجا حذف شد تا سوالات تحلیلی استان‌ها به بخش هوش مصنوعی هدایت شوند
     general_stats = {
         "دارندگان اوراق": "تعداد دارندگان اوراق گام",
         "متقاضی": "تعداد دارندگان اوراق گام",
         "همکاران استانی": "تعداد تماس همکاران استانی بانک",
         "استان فعال": "تعداد استان های فعال",
-        "استان": "تعداد استان های فعال",
     }
 
     stats_map = data_summary.get("stats_map", {})
@@ -135,8 +106,6 @@ def answer_actions_directly(question: str, df: pd.DataFrame) -> str | None:
     if not action_col:
         return None
 
-    # Extract person name from question by matching names in dataframe
-    # Sort by name length descending so longer/more specific names match first
     all_names = sorted(
         df[name_col].dropna().unique(),
         key=lambda x: len(str(x)),
@@ -148,18 +117,15 @@ def answer_actions_directly(question: str, df: pd.DataFrame) -> str | None:
     for name in all_names:
         name_str = str(name).strip()
         clean_name = name_str.replace("آقای", "").replace("خانم", "").strip()
-        # Check if the full clean name appears in the question
         if clean_name and clean_name in question:
             if len(clean_name) > best_match_len:
                 matched_name = name_str
                 best_match_len = len(clean_name)
 
-    # If no full name match, try last name only (longest part)
     if not matched_name:
         for name in all_names:
             name_str = str(name).strip()
             parts = name_str.replace("آقای", "").replace("خانم", "").strip().split()
-            # Try longest part first (usually last name)
             for part in sorted(parts, key=len, reverse=True):
                 if len(part) > 3 and part in question:
                     if len(part) > best_match_len:
@@ -170,7 +136,6 @@ def answer_actions_directly(question: str, df: pd.DataFrame) -> str | None:
     if not matched_name:
         return None
 
-    # Filter rows for this person - use exact name match
     search_term = matched_name.replace("آقای", "").replace("خانم", "").strip()
     mask = df[name_col].astype(str).str.contains(search_term, na=False)
     filtered = df[mask]
@@ -178,7 +143,6 @@ def answer_actions_directly(question: str, df: pd.DataFrame) -> str | None:
     if filtered.empty:
         return f"هیچ رکوردی برای **{matched_name}** پیدا نشد."
 
-    # Find date column
     date_col = next((c for c in ["تاریخ", "تاریخ تماس", "date"] if c in df.columns), None)
 
     lines = [f"اقدامات انجام شده برای **{matched_name}**:"]
@@ -209,7 +173,6 @@ def answer_names_directly(question: str, data_summary: dict, df: pd.DataFrame) -
 
     province_col = data_summary.get("province_column")
     if not province_col or province_col not in df.columns:
-        # Try to find province column automatically
         for col in df.columns:
             if df[col].astype(str).str.contains(province, na=False).any():
                 province_col = col
@@ -218,14 +181,12 @@ def answer_names_directly(question: str, data_summary: dict, df: pd.DataFrame) -
     if not province_col:
         return None
 
-    # Filter rows for this province
     mask = df[province_col].astype(str).str.contains(province, na=False)
     filtered = df[mask]
 
     if filtered.empty:
         return f"هیچ رکوردی برای استان {province} در داده‌ها پیدا نشد."
 
-    # Find name column
     name_col = None
     for col in ["نام متقاضی", "نام", "متقاضی", "نام تماس گیرنده", "اسم"]:
         if col in df.columns:
@@ -233,7 +194,6 @@ def answer_names_directly(question: str, data_summary: dict, df: pd.DataFrame) -
             break
 
     if not name_col:
-        # Use first text column
         for col in df.columns:
             if df[col].dtype == object and col != province_col:
                 name_col = col
@@ -268,12 +228,11 @@ def load_and_analyze_data(file_bytes: bytes):
 
     stats_text = ""
     provinces_count = {}
-    stats_map = {}  # for direct lookup: {"تعداد دارندگان اوراق گام": 26, ...}
+    stats_map = {}
 
     if len(all_sheets) >= 2:
         stats_df = all_sheets[sheet_names[1]]
 
-        # --- Extract header summary (2-cell rows: label | number) ---
         header_lines = ["== خلاصه کلی =="]
         for _, row in stats_df.iterrows():
             cells = [str(v).strip() for v in row if pd.notna(v) and str(v).strip() not in ("", "nan")]
@@ -285,7 +244,6 @@ def load_and_analyze_data(file_bytes: bytes):
                 except Exception:
                     pass
 
-        # --- Extract province counts ---
         province_data = {}
         for _, row in stats_df.iterrows():
             row_vals = [v for v in row if pd.notna(v) and str(v).strip() not in ("", "nan")]
@@ -311,14 +269,12 @@ def load_and_analyze_data(file_bytes: bytes):
 
         stats_text = "\n".join(header_lines + province_lines)
 
-    # همیشه ستون استان رو از شیت اول پیدا کن
     province_col = None
     for col in POSSIBLE_PROVINCE_COLUMNS:
         if col in df.columns:
             province_col = col
             break
 
-    # اگه شیت آمار نداشتیم، خودمون بشماریم
     if not provinces_count:
         if province_col:
             for value in df[province_col].dropna():
@@ -336,15 +292,6 @@ def load_and_analyze_data(file_bytes: bytes):
         "stats_map": stats_map,
     }
     return summary, df
-
-
-def build_system_prompt(data_summary: dict, df: pd.DataFrame) -> str:
-    full_data_json = df.to_json(orient="records", force_ascii=False, indent=2)
-    return SYSTEM_PROMPT_TEMPLATE.format(
-        stats_text=data_summary["stats_text"],
-        all_columns=data_summary["all_columns"],
-        full_data=full_data_json,
-    )
 
 
 # =========================
@@ -386,32 +333,25 @@ with st.expander("📊 آمار سریع داده‌ها", expanded=True):
 
     st.dataframe(df.head(10), use_container_width=True)
 
-    # DEBUG - comment out when done
-    # st.subheader("🔍 دیباگ: متنی که به مدل میرسه")
-    # st.text(data_summary["stats_text"])
-
 # Chat state
 if "messages" not in st.session_state:
-    st.session_state.messages = [
-        {"role": "system", "content": build_system_prompt(data_summary, df)}
-    ]
+    st.session_state.messages = []
 
 # Render history
 for msg in st.session_state.messages:
-    if msg["role"] == "system":
-        continue
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
 user_input = st.chat_input("سوال خود را درباره داده‌ها بپرسید...")
 
+# 🌟🌟🌟 بخش جایگزین شده اصلی از اینجا شروع می‌شود 🌟🌟🌟
 if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.markdown(user_input)
 
     with st.chat_message("assistant"):
-        # --- Smart routing: answer directly from pandas when possible ---
+        # ۱. ابتدا بررسی فیلترهای مستقیم پایتونی شما (سریع و بدون مدل)
         direct_answer = answer_count_directly(user_input, data_summary)
         if not direct_answer:
             direct_answer = answer_actions_directly(user_input, df)
@@ -420,22 +360,60 @@ if user_input:
 
         if direct_answer:
             st.markdown(direct_answer)
-            st.caption("🔢 پاسخ مستقیم از داده‌های pandas (بدون LLM)")
+            st.caption("🔢 پاسخ مستقیم از فرمول‌های پیش‌فرض پانداس")
             st.session_state.messages.append({"role": "assistant", "content": direct_answer})
+        
         else:
-            # Use LLM for detail questions
-            with st.spinner("در حال پردازش..."):
+           # ۲. رویکرد Text-to-Python برای سوالات تحلیلی مدیریتی شما
+            with st.spinner("در حال تحلیل هوشمند داده‌های اکسل..."):
                 try:
-                    answer, prompt_tokens, completion_tokens = ollama_utility.chat(
-                        messages=st.session_state.messages,
-                        model_name=model_name,
-                        temperature=temperature,
+                    # ایجاد یک نمونه کوچک از داده‌ها برای فهم ساختار توسط مدل
+                    sample_data = df.head(3).to_json(orient="records", force_ascii=False)
+                    
+                    # تولید کد پانداس توسط Ollama
+                    generated_code = ollama_utility.generate_pandas_code(
+                        question=user_input,
+                        columns=data_summary["all_columns"],
+                        sample_data_json=sample_data,
                         base_url=base_url,
+                        model_name=model_name
                     )
+                    
+                    # دیباگ داخلی برای ادمین جهت مشاهده کد پانداس ساخته شده
+                    st.caption(f"💻 کد پانداس اجرا شده: `{generated_code}`")
+                    
+                    # 🌟 اصلاح مهم ۱: اضافه کردن str به دیکشنری محلی برای حل خطای اجرای کد
+                    local_vars = {'df': df, 'pd': pd, 'str': str, 'int': int, 'float': float}
+                    result = eval(generated_code, {"__builtins__": {}}, local_vars)
+                    
+                    # 🌟 اصلاح مهم ۲: زیباسازی و فرمت‌دهی به انواع خروجی‌های پانداس برای نمایش به مدیر
+                    if isinstance(result, list):
+                        if result:
+                            formatted_answer = "📋 **لیست افراد/موارد یافت شده:**\n" + "\n".join(f"- {item}" for item in result)
+                        else:
+                            formatted_answer = "🔍 هیچ موردی یافت نشد."
+                            
+                    elif isinstance(result, dict):
+                        formatted_answer = "📊 **آمار تفکیکی:**\n" + "\n".join(f"- {k}: {v}" for k, v in result.items())
+                        
+                    elif isinstance(result, pd.Series):
+                        # تبدیل خروجی‌های value_counts به یک جدول شکیل و مرتب
+                        series_df = result.reset_index()
+                        series_df.columns = ["عنوان / دسته‌بندی", "تعداد"]
+                        st.dataframe(series_df, use_container_width=True)
+                        formatted_answer = "📊 آمار درخواستی در جدول بالا استخراج و مرتب شد."
+                        
+                    elif isinstance(result, pd.DataFrame):
+                        if not result.empty:
+                            st.dataframe(result, use_container_width=True)
+                            formatted_answer = f"💡 تعداد {len(result)} ردیف استخراج شد و در بالا نمایش داده شد."
+                        else:
+                            formatted_answer = "🔍 رکوردی با این مشخصات یافت نشد."
+                    else:
+                        formatted_answer = f"📊 **پاسخ تحلیل داده‌ها:**\n\n{result}"
+                    
                 except Exception as e:
-                    answer = f"❌ خطا در ارتباط با Ollama: {e}"
-                    prompt_tokens = completion_tokens = 0
+                    formatted_answer = f"❌ متاسفانه در استخراج دقیق این گزارش خطایی رخ داد. لطفاً سوال را واضح‌تر بپرسید. \n*(جزئیات فنی: {e})*"
 
-            st.markdown(answer)
-            st.caption(f"🔢 توکن‌ها — ورودی: {prompt_tokens} | خروجی: {completion_tokens}")
-            st.session_state.messages.append({"role": "assistant", "content": answer})
+            st.markdown(formatted_answer)
+            st.session_state.messages.append({"role": "assistant", "content": formatted_answer})
