@@ -217,6 +217,33 @@ def answer_names_directly(question: str, data_summary: dict, df: pd.DataFrame) -
 # =========================
 @st.cache_data(show_spinner=False)
 def load_and_analyze_data(file_bytes: bytes):
+
+    all_sheets = pd.read_excel(
+        pd.io.common.BytesIO(file_bytes),
+        sheet_name=None,
+        engine="openpyxl"
+    )
+
+    sheet_names = list(all_sheets.keys())
+
+    df = all_sheets[sheet_names[0]]
+
+    unique_values = {}
+
+    for col in [
+        "استان",
+        "نوع متقاضی",
+        "اقدامات انجام شده",
+        "نام متقاضی",
+    ]:
+        if col in df.columns:
+            unique_values[col] = (
+                df[col]
+                .dropna()
+                .astype(str)
+                .unique()
+                .tolist()
+            )
     all_sheets = pd.read_excel(
         pd.io.common.BytesIO(file_bytes),
         sheet_name=None,
@@ -290,6 +317,7 @@ def load_and_analyze_data(file_bytes: bytes):
         "all_columns": df.columns.tolist(),
         "stats_text": stats_text,
         "stats_map": stats_map,
+        "unique_values": unique_values,
     }
     return summary, df
 
@@ -375,8 +403,9 @@ if user_input:
                         question=user_input,
                         columns=data_summary["all_columns"],
                         sample_data_json=sample_data,
+                        unique_values=unique_values,
                         base_url=base_url,
-                        model_name=model_name
+                        model_name=model_name,
                     )
                     
                     # دیباگ داخلی برای ادمین جهت مشاهده کد پانداس ساخته شده
@@ -384,8 +413,12 @@ if user_input:
                     
                     # 🌟 اصلاح مهم ۱: اضافه کردن str به دیکشنری محلی برای حل خطای اجرای کد
                     local_vars = {'df': df, 'pd': pd, 'str': str, 'int': int, 'float': float}
+
+                    if not generated_code or not str(generated_code).strip():
+                        raise ValueError("کد تولید شده خالی است.")
+
                     result = eval(generated_code, {"__builtins__": {}}, local_vars)
-                    
+
                     # 🌟 اصلاح مهم ۲: زیباسازی و فرمت‌دهی به انواع خروجی‌های پانداس برای نمایش به مدیر
                     if isinstance(result, list):
                         if result:
@@ -406,11 +439,23 @@ if user_input:
                     elif isinstance(result, pd.DataFrame):
                         if not result.empty:
                             st.dataframe(result, use_container_width=True)
-                            formatted_answer = f"💡 تعداد {len(result)} ردیف استخراج شد و در بالا نمایش داده شد."
+                            with st.spinner("در حال نگارش گزارش مدیریتی بر اساس نتایج..."):
+                                report = ollama_utility.get_management_report(
+                                    data_string=result.head(20).to_string(),
+                                    base_url=base_url,
+                                    model_name=model_name
+                                )
+                            formatted_answer = (
+                                f"💡 تعداد {len(result)} ردیف استخراج شد.\n\n"
+                                f"**گزارش مدیریتی:**\n{report}"
+                            )
                         else:
                             formatted_answer = "🔍 رکوردی با این مشخصات یافت نشد."
+
                     else:
-                        formatted_answer = f"📊 **پاسخ تحلیل داده‌ها:**\n\n{result}"
+                        formatted_answer = f"✅ نتیجه: {result}"
+
+
                     
                 except Exception as e:
                     formatted_answer = f"❌ متاسفانه در استخراج دقیق این گزارش خطایی رخ داد. لطفاً سوال را واضح‌تر بپرسید. \n*(جزئیات فنی: {e})*"
