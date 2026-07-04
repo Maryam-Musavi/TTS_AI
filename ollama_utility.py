@@ -440,21 +440,24 @@ def generate_pandas_code(
 
         system_prompt = ANALYSIS_PROMPT.format(
             columns=columns,
-            sample_data_json=sample_data_json
+            sample_data_json=sample_data_json,
+            unique_values=unique_values,
         )
 
     elif any(k in question for k in COUNT_KEYWORDS):
 
         system_prompt = COUNT_PROMPT.format(
             columns=columns,
-            sample_data_json=sample_data_json
+            sample_data_json=sample_data_json,
+            unique_values=unique_values,
         )
 
     elif any(k in question for k in LIST_KEYWORDS):
 
         system_prompt = LIST_PROMPT.format(
             columns=columns,
-            sample_data_json=sample_data_json
+            sample_data_json=sample_data_json,
+            unique_values=unique_values,
         )
 
     else:
@@ -483,8 +486,15 @@ def generate_pandas_code(
     
 
     code = response.message.content.strip()
+
+    # حذف markdown
     code = re.sub(r"```python", "", code)
     code = re.sub(r"```", "", code)
+
+    # حذف importهای احتمالی
+    code = code.replace("import pandas as pd", "")
+    code = code.replace("import pandas", "")
+
     code = code.strip()
 
     return code
