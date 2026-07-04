@@ -7,6 +7,8 @@ from typing import Final, Optional
 from ollama import Client, ChatResponse
 
 import logging
+import re
+
 
 VERSION: Final[str] = "1.0"
 TEMPERATURE: Final[float] = 0.1
@@ -39,88 +41,451 @@ def chat(
 
     client = get_offline_client(base_url=base_url)
 
-    logger.debug(msg=f"Ollama '{model_name}' chat started...")
+    logger.debug(f"Ollama '{model_name}' chat started...")
 
     response: ChatResponse = client.chat(
-    think=think,
-    stream=False,
-    model=model_name,
-    messages=messages,
-    options={
-        "temperature": temperature,
-        "num_ctx": 16384  # <--- اضافه کردن این خط، پنجره دید مدل را به ۱۶ هزار توکن افزایش می‌دهد
-    },
-)
+        model=model_name,
+        messages=messages,
+        think=think,
+        stream=False,
+        options={
+            "temperature": temperature,
+            "num_ctx": 16384,
+        },
+    )
 
-    logger.debug(msg=f"Ollama '{model_name}' chat finished.")
+    logger.debug(f"Ollama '{model_name}' chat finished.")
 
     assistant_answer: Optional[str] = response.message.content
 
-    prompt_tokens: int = 0
-    completion_tokens: int = 0
-
-    if assistant_answer:
-        if response.eval_count:
-            completion_tokens = response.eval_count
-        if response.prompt_eval_count:
-            prompt_tokens = response.prompt_eval_count
+    prompt_tokens = response.prompt_eval_count or 0
+    completion_tokens = response.eval_count or 0
 
     return assistant_answer, prompt_tokens, completion_tokens
 
-def generate_pandas_code(question: str, columns: list, sample_data_json: str, base_url: str, model_name: str) -> str:
+def get_management_report(
+    data_string: str,
+    base_url: str = BASE_URL_OFFLINE,
+    model_name: str = MODEL_NAME,
+) -> str:
+    """
+    Generate a short Persian management report from a DataFrame output.
+    """
+
+    client = get_offline_client(base_url=base_url)
+
+    system_prompt = """
+You are a senior banking business analyst.
+
+Write a concise management report in Persian.
+
+The report must include:
+- مهم‌ترین یافته
+- تحلیل کوتاه
+- پیشنهاد مدیریتی
+
+Maximum 150 words.
+"""
+
+    response: ChatResponse = client.chat(
+        model=model_name,
+        messages=[
+            {
+                "role": "system",
+                "content": system_prompt,
+            },
+            {
+                "role": "user",
+                "content": f"Analyze the following table and write a management report in Persian:\n\n{data_string}",
+            },
+        ],
+        options={
+            "temperature": 0.2,
+            "num_ctx": 4096,
+        },
+    )
+
+    return response.message.content.strip()
+
+
+GENERAL_PROMPT = """
+You are an expert Python Pandas developer.
+
+Your ONLY task is to convert a Persian user's question into executable Python Pandas code.
+
+DataFrame name:
+
+df
+
+Columns:
+
+{columns}
+
+Sample data:
+
+{sample_data_json}
+
+Unique values:
+
+{unique_values}
+
+RULES
+
+- Return ONLY executable Python code.
+- No markdown.
+- No explanations.
+- No Persian text.
+- Never invent column names.
+- Use only existing columns.
+- Always use astype(str).str.contains(..., case=False, na=False) for text searches.
+- Handle missing values safely.
+
+Return only executable Python code.
+"""
+
+COUNT_PROMPT = """
+You are an expert Python Pandas developer.
+
+Your ONLY task is to generate executable Python Pandas code.
+
+DataFrame name:
+
+df
+
+Columns:
+
+{columns}
+
+Sample data:
+
+{sample_data_json}
+
+Unique values:
+
+{unique_values}
+
+The user is asking a COUNT question.
+
+Examples:
+
+چند
+تعداد
+چه تعداد
+جمعا
+چند نفر
+چند تماس
+چند مورد
+
+RULES
+
+- Return ONLY executable Python code.
+- Never explain.
+- Never return markdown.
+- Never return Persian text.
+- Never return lists.
+- Never return phone numbers.
+- Never return names.
+- Never invent column names.
+- Use only existing columns.
+- Always use case=False and na=False in text searches.
+
+Preferred functions:
+
+len(...)
+.nunique()
+.value_counts()
+
+Special Examples
+
+Q: از استان مازندران چند تماس داشته ایم؟
+A:
+len(df[df["استان"].astype(str).str.contains("مازندران", case=False, na=False)])
+
+Q: چند تماس از طرف بانک داشته ایم؟
+A:
+len(df[df["نوع متقاضی"].astype(str).str.contains("بانک", case=False, na=False)])
+
+Q: از چند استان تماس داشته ایم؟
+A:
+df["استان"].dropna().nunique()
+
+Q: جمعا چند متقاضی حقیقی و حقوقی تماس گرفته اند؟
+A:
+df["نوع متقاضی"].value_counts().to_dict()
+
+Return ONLY executable Python code.
+"""
+
+
+LIST_PROMPT = """
+You are an expert Python Pandas developer.
+
+Your ONLY task is to generate executable Python Pandas code.
+
+DataFrame name:
+
+df
+
+Columns:
+
+{columns}
+
+Sample data:
+
+{sample_data_json}
+
+Unique values:
+
+{unique_values}
+
+The user wants a LIST.
+
+Examples
+
+چه کسانی
+چه اشخاصی
+اسامی
+لیست
+کدام مشتریان
+
+RULES
+
+- Return ONLY executable Python code.
+- Never explain.
+- Never return markdown.
+- Never summarize.
+- Never return counts.
+- Never invent column names.
+- Use only existing columns.
+- Always use case=False and na=False.
+
+When the user asks:
+
+چه کسانی
+
+Return
+
+.unique().tolist()
+
+If user asks phone numbers
+
+Return only phone number column.
+
+If user asks actions
+
+Return only action column.
+
+Examples
+
+Q: چه اشخاصی از استان فارس تماس گرفته اند؟
+
+A:
+df[df["استان"].astype(str).str.contains("فارس", case=False, na=False)]["نام متقاضی"].dropna().unique().tolist()
+
+Q: شماره تماس آقای احمدی چیست؟
+
+A:
+df[df["نام متقاضی"].astype(str).str.contains("احمدی", case=False, na=False)]["شماره تماس"].dropna().tolist()
+
+Q: اقدامات انجام شده برای آقای رضایی چیست؟
+
+A:
+df[df["نام متقاضی"].astype(str).str.contains("رضایی", case=False, na=False)]["اقدامات انجام شده"].dropna().tolist()
+
+Return ONLY executable Python code.
+"""
+
+
+
+ANALYSIS_PROMPT = """
+You are an expert Python Pandas analyst.
+
+Your ONLY task is to generate executable Python Pandas code.
+
+DataFrame name:
+
+df
+
+Columns:
+
+{columns}
+
+Sample data:
+
+{sample_data_json}
+
+Unique values:
+
+{unique_values}
+
+The user wants a MANAGEMENT ANALYSIS.
+
+Examples
+
+تحلیل
+گزارش
+بررسی
+روند
+وضعیت
+خلاصه
+
+RULES
+
+- Return ONLY executable Python code.
+- Never explain.
+- Never return markdown.
+- Never search for people's names.
+- Never filter rows using fixed keywords.
+- Never return phone numbers.
+- Never return lists.
+- Never invent column names.
+- Use only existing columns.
+
+Always produce a summarized DataFrame.
+
+Preferred operations
+
+groupby()
+
+agg()
+
+value_counts()
+
+pivot_table()
+
+reset_index()
+
+sort_values()
+
+Examples
+
+Q: یک تحلیل کلی از جدول بده
+
+A:
+df.describe(include="all")
+
+Q: تحلیل استان‌ها را بده
+
+A:
+df.groupby("استان").size().reset_index(name="تعداد").sort_values("تعداد", ascending=False)
+
+Q: تحلیل نوع متقاضی
+
+A:
+df.groupby("نوع متقاضی").size().reset_index(name="تعداد")
+
+Q: تحلیل اقدامات انجام شده
+
+A:
+df.groupby("اقدامات انجام شده").size().reset_index(name="تعداد").sort_values("تعداد", ascending=False)
+
+The result MUST be a pandas DataFrame.
+
+Return ONLY executable Python code.
+"""
+
+COUNT_KEYWORDS = [
+    "چند",
+    "تعداد",
+    "چه تعداد",
+    "جمعا",
+    "جمع",
+    "کل",
+    "جمع کل",
+    "آمار",
+    "میزان",
+    "چندتا",
+    "چند مورد",
+]
+
+LIST_KEYWORDS = [
+    "چه کسانی",
+    "چه اشخاصی",
+    "چه افرادی",
+    "اسامی",
+    "لیست",
+    "افراد",
+    "اشخاص",
+    "مشتریان",
+    "نام",
+    "نام ها",
+]
+
+ANALYSIS_KEYWORDS = [
+    "تحلیل",
+    "گزارش",
+    "روند",
+    "بررسی",
+    "وضعیت",
+    "خلاصه",
+]
+
+
+def generate_pandas_code(
+    question: str,
+    columns: list[str],
+    sample_data_json: str,
+    unique_values: dict,
+    base_url: str,
+    model_name: str,
+) -> str:
     """
     تبدیل سوال کاربر به کد پانداس با استفاده از ال‌ال‌ام
     """
     client = get_offline_client(base_url=base_url)
     
-    system_prompt = f"""You are an expert Python data analyst. Your ONLY job is to convert a Persian user question into a valid single-line or multi-line pandas expression that answers the question based on a DataFrame named 'df'.
+    # انتخاب Prompt مناسب
 
-Available Columns in 'df': {columns}
-Sample Data Structure (JSON):
-{sample_data_json}
+    if any(k in question for k in ANALYSIS_KEYWORDS):
 
-STRICT RULES:
-1. Return ONLY the executable Python code block. No explanations, no markdown (do NOT use ```python), no extra text.
-2. Assume the DataFrame is already loaded and named 'df'.
-3. Clean user names if needed (handle both string exact match or .str.contains).
-4. For text searches (like names or statuses), always use `.str.contains('keyword', na=False, case=False)` to be safe.
-5. If the result is a list of people, make sure the expression extracts the name column.
+        system_prompt = ANALYSIS_PROMPT.format(
+            columns=columns,
+            sample_data_json=sample_data_json
+        )
 
-EXAMPLES:
-Q: از استان بوشهر چند نفر تماس گرفته اند؟
-A: len(df[df['استان'].astype(str).str.contains('بوشهر', na=False)])
+    elif any(k in question for k in COUNT_KEYWORDS):
 
-Q: چه اشخاصی از استان فارس تماس گرفته اند؟
-A: df[df['استان'].astype(str).str.contains('فارس', na=False)]['نام متقاضی'].dropna().unique().tolist()
+        system_prompt = COUNT_PROMPT.format(
+            columns=columns,
+            sample_data_json=sample_data_json
+        )
 
-Q: شماره تماس آقای علی علوی را بهم بده.
-A: df[df['نام متقاضی'].astype(str).str.contains('علی علوی', na=False)]['شماره تماس'].dropna().tolist()
+    elif any(k in question for k in LIST_KEYWORDS):
 
-Q: اوراق گام چه اشخاصی منتشر شده است؟
-A: df[df['اقدامات انجام شده'].astype(str).str.contains('منتشر', na=False)]['نام متقاضی'].dropna().unique().tolist()
+        system_prompt = LIST_PROMPT.format(
+            columns=columns,
+            sample_data_json=sample_data_json
+        )
 
-Q: چه اشخاصی ناراضی هستند؟
-A: df[df['اقدامات انجام شده'].astype(str).str.contains('ناراضی|نارضایتی', na=False)]['نام متقاضی'].dropna().unique().tolist()
+    else:
 
-Q: جمعا از چند استان تماس گیرنده داریم؟
-A: df['استان'].dropna().nunique()
-
-Q: چند متقاضی حقیقی و حقوقی تماس گرفته اند؟
-A: df['نوع متقاضی'].value_counts().to_dict()
-"""
-
+        system_prompt = GENERAL_PROMPT.format(
+            columns=columns,
+            sample_data_json=sample_data_json,
+            unique_values=unique_values,
+        )
     messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": f"Question: {question}\nPandas Code:"}
-    ]
+    {"role": "system", "content": system_prompt},
+    {"role": "user", "content": question},
+]
 
     response = client.chat(
         model=model_name,
         messages=messages,
-        options={"temperature": 0.0, "num_ctx": 4096} # دما صفر برای دقت بالا در کدنویسی
+        options={
+    "temperature": 0.0,
+    "num_ctx": 8192,
+    "stop": ["```"],
+} # دما صفر برای دقت بالا در کدنویسی
     )
     
     # تمیز کردن خروجی جی‌پی‌تی از مارک‌داون احتمالی
+    
+
     code = response.message.content.strip()
-    code = code.replace("```python", "").replace("```", "").strip()
+    code = re.sub(r"```python", "", code)
+    code = re.sub(r"```", "", code)
+    code = code.strip()
+
     return code
+
