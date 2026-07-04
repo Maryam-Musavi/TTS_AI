@@ -4,6 +4,7 @@ Streamlit Excel Q&A Chatbot - Final Version (Text-to-Python Engine)
 
 import json
 import re
+
 import streamlit as st
 import pandas as pd
 
@@ -244,15 +245,7 @@ def load_and_analyze_data(file_bytes: bytes):
                 .unique()
                 .tolist()
             )
-    all_sheets = pd.read_excel(
-        pd.io.common.BytesIO(file_bytes),
-        sheet_name=None,
-        engine="openpyxl"
-    )
-
-    sheet_names = list(all_sheets.keys())
-    df = all_sheets[sheet_names[0]]
-
+    
     stats_text = ""
     provinces_count = {}
     stats_map = {}
@@ -345,6 +338,7 @@ if uploaded_file is None:
     st.stop()
 
 data_summary, df = load_and_analyze_data(uploaded_file.getvalue())
+st.write(data_summary.keys())
 
 # Stats panel
 with st.expander("📊 آمار سریع داده‌ها", expanded=True):
@@ -399,11 +393,13 @@ if user_input:
                     sample_data = df.head(3).to_json(orient="records", force_ascii=False)
                     
                     # تولید کد پانداس توسط Ollama
+                    st.write(data_summary.keys())
+                    st.write(data_summary)
                     generated_code = ollama_utility.generate_pandas_code(
                         question=user_input,
                         columns=data_summary["all_columns"],
                         sample_data_json=sample_data,
-                        unique_values=unique_values,
+                        unique_values=data_summary["unique_values"],
                         base_url=base_url,
                         model_name=model_name,
                     )
@@ -412,8 +408,14 @@ if user_input:
                     st.caption(f"💻 کد پانداس اجرا شده: `{generated_code}`")
                     
                     # 🌟 اصلاح مهم ۱: اضافه کردن str به دیکشنری محلی برای حل خطای اجرای کد
-                    local_vars = {'df': df, 'pd': pd, 'str': str, 'int': int, 'float': float}
-
+                    local_vars = {
+                        "df": df,
+                        "pd": pd,
+                        "str": str,
+                        "int": int,
+                        "float": float,
+                        "len": len,
+                    }
                     if not generated_code or not str(generated_code).strip():
                         raise ValueError("کد تولید شده خالی است.")
 
@@ -457,8 +459,14 @@ if user_input:
 
 
                     
+                # except Exception as e:
+                #     formatted_answer = f"❌ متاسفانه در استخراج دقیق این گزارش خطایی رخ داد. لطفاً سوال را واضح‌تر بپرسید. \n*(جزئیات فنی: {e})*"
+                
+
                 except Exception as e:
-                    formatted_answer = f"❌ متاسفانه در استخراج دقیق این گزارش خطایی رخ داد. لطفاً سوال را واضح‌تر بپرسید. \n*(جزئیات فنی: {e})*"
+                    import traceback
+                    st.code(traceback.format_exc())
+                    formatted_answer = f"❌ {e}"
 
             st.markdown(formatted_answer)
             st.session_state.messages.append({"role": "assistant", "content": formatted_answer})
