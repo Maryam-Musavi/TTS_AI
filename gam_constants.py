@@ -136,7 +136,7 @@ TTS_VOICE_MALE: Final[str]   = "fa-IR-FaridNeural"    # صدای مردانه
 
 # تنظیمات صدا
 TTS_RATE: Final[str]   = "+5%"    # سرعت خواندن
-TTS_PITCH: Final[str]  = "-10Hz"  # زیر و بمی صدا
+TTS_PITCH: Final[str]  = "-5Hz"  # زیر و بمی صدا
 TTS_VOLUME: Final[str] = "+20%"   # بلندی صدا
 
 # پوشه ذخیره فایل‌های صوتی موقت
