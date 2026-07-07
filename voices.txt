@@ -1,0 +1,697 @@
+==================================================
+Voices: 
+--------------------------------------------------
+__1 - af-ZA-AdriNeural                    - Female
+--------------------------------------------------
+__2 - af-ZA-WillemNeural                  - Male
+--------------------------------------------------
+__3 - sq-AL-AnilaNeural                   - Female
+--------------------------------------------------
+__4 - sq-AL-IlirNeural                    - Male
+--------------------------------------------------
+__5 - am-ET-AmehaNeural                   - Male
+--------------------------------------------------
+__6 - am-ET-MekdesNeural                  - Female
+--------------------------------------------------
+__7 - ar-DZ-AminaNeural                   - Female
+--------------------------------------------------
+__8 - ar-DZ-IsmaelNeural                  - Male
+--------------------------------------------------
+__9 - ar-BH-AliNeural                     - Male
+--------------------------------------------------
+_10 - ar-BH-LailaNeural                   - Female
+--------------------------------------------------
+_11 - ar-EG-SalmaNeural                   - Female
+--------------------------------------------------
+_12 - ar-EG-ShakirNeural                  - Male
+--------------------------------------------------
+_13 - ar-IQ-BasselNeural                  - Male
+--------------------------------------------------
+_14 - ar-IQ-RanaNeural                    - Female
+--------------------------------------------------
+_15 - ar-JO-SanaNeural                    - Female
+--------------------------------------------------
+_16 - ar-JO-TaimNeural                    - Male
+--------------------------------------------------
+_17 - ar-KW-FahedNeural                   - Male
+--------------------------------------------------
+_18 - ar-KW-NouraNeural                   - Female
+--------------------------------------------------
+_19 - ar-LB-LaylaNeural                   - Female
+--------------------------------------------------
+_20 - ar-LB-RamiNeural                    - Male
+--------------------------------------------------
+_21 - ar-LY-ImanNeural                    - Female
+--------------------------------------------------
+_22 - ar-LY-OmarNeural                    - Male
+--------------------------------------------------
+_23 - ar-MA-JamalNeural                   - Male
+--------------------------------------------------
+_24 - ar-MA-MounaNeural                   - Female
+--------------------------------------------------
+_25 - ar-OM-AbdullahNeural                - Male
+--------------------------------------------------
+_26 - ar-OM-AyshaNeural                   - Female
+--------------------------------------------------
+_27 - ar-QA-AmalNeural                    - Female
+--------------------------------------------------
+_28 - ar-QA-MoazNeural                    - Male
+--------------------------------------------------
+_29 - ar-SA-HamedNeural                   - Male
+--------------------------------------------------
+_30 - ar-SA-ZariyahNeural                 - Female
+--------------------------------------------------
+_31 - ar-SY-AmanyNeural                   - Female
+--------------------------------------------------
+_32 - ar-SY-LaithNeural                   - Male
+--------------------------------------------------
+_33 - ar-TN-HediNeural                    - Male
+--------------------------------------------------
+_34 - ar-TN-ReemNeural                    - Female
+--------------------------------------------------
+_35 - ar-AE-FatimaNeural                  - Female
+--------------------------------------------------
+_36 - ar-AE-HamdanNeural                  - Male
+--------------------------------------------------
+_37 - ar-YE-MaryamNeural                  - Female
+--------------------------------------------------
+_38 - ar-YE-SalehNeural                   - Male
+--------------------------------------------------
+_39 - az-AZ-BabekNeural                   - Male
+--------------------------------------------------
+_40 - az-AZ-BanuNeural                    - Female
+--------------------------------------------------
+_41 - bn-BD-NabanitaNeural                - Female
+--------------------------------------------------
+_42 - bn-BD-PradeepNeural                 - Male
+--------------------------------------------------
+_43 - bn-IN-BashkarNeural                 - Male
+--------------------------------------------------
+_44 - bn-IN-TanishaaNeural                - Female
+--------------------------------------------------
+_45 - bs-BA-VesnaNeural                   - Female
+--------------------------------------------------
+_46 - bs-BA-GoranNeural                   - Male
+--------------------------------------------------
+_47 - bg-BG-BorislavNeural                - Male
+--------------------------------------------------
+_48 - bg-BG-KalinaNeural                  - Female
+--------------------------------------------------
+_49 - my-MM-NilarNeural                   - Female
+--------------------------------------------------
+_50 - my-MM-ThihaNeural                   - Male
+--------------------------------------------------
+_51 - ca-ES-EnricNeural                   - Male
+--------------------------------------------------
+_52 - ca-ES-JoanaNeural                   - Female
+--------------------------------------------------
+_53 - zh-HK-HiuGaaiNeural                 - Female
+--------------------------------------------------
+_54 - zh-HK-HiuMaanNeural                 - Female
+--------------------------------------------------
+_55 - zh-HK-WanLungNeural                 - Male
+--------------------------------------------------
+_56 - zh-CN-XiaoxiaoNeural                - Female
+--------------------------------------------------
+_57 - zh-CN-XiaoyiNeural                  - Female
+--------------------------------------------------
+_58 - zh-CN-YunjianNeural                 - Male
+--------------------------------------------------
+_59 - zh-CN-YunxiNeural                   - Male
+--------------------------------------------------
+_60 - zh-CN-YunxiaNeural                  - Male
+--------------------------------------------------
+_61 - zh-CN-YunyangNeural                 - Male
+--------------------------------------------------
+_62 - zh-CN-liaoning-XiaobeiNeural        - Female
+--------------------------------------------------
+_63 - zh-TW-HsiaoChenNeural               - Female
+--------------------------------------------------
+_64 - zh-TW-YunJheNeural                  - Male
+--------------------------------------------------
+_65 - zh-TW-HsiaoYuNeural                 - Female
+--------------------------------------------------
+_66 - zh-CN-shaanxi-XiaoniNeural          - Female
+--------------------------------------------------
+_67 - hr-HR-GabrijelaNeural               - Female
+--------------------------------------------------
+_68 - hr-HR-SreckoNeural                  - Male
+--------------------------------------------------
+_69 - cs-CZ-AntoninNeural                 - Male
+--------------------------------------------------
+_70 - cs-CZ-VlastaNeural                  - Female
+--------------------------------------------------
+_71 - da-DK-ChristelNeural                - Female
+--------------------------------------------------
+_72 - da-DK-JeppeNeural                   - Male
+--------------------------------------------------
+_73 - nl-BE-ArnaudNeural                  - Male
+--------------------------------------------------
+_74 - nl-BE-DenaNeural                    - Female
+--------------------------------------------------
+_75 - nl-NL-ColetteNeural                 - Female
+--------------------------------------------------
+_76 - nl-NL-FennaNeural                   - Female
+--------------------------------------------------
+_77 - nl-NL-MaartenNeural                 - Male
+--------------------------------------------------
+_78 - en-AU-NatashaNeural                 - Female
+--------------------------------------------------
+_79 - en-AU-WilliamNeural                 - Male
+--------------------------------------------------
+_80 - en-CA-ClaraNeural                   - Female
+--------------------------------------------------
+_81 - en-CA-LiamNeural                    - Male
+--------------------------------------------------
+_82 - en-HK-YanNeural                     - Female
+--------------------------------------------------
+_83 - en-HK-SamNeural                     - Male
+--------------------------------------------------
+_84 - en-IN-NeerjaExpressiveNeural        - Female
+--------------------------------------------------
+_85 - en-IN-NeerjaNeural                  - Female
+--------------------------------------------------
+_86 - en-IN-PrabhatNeural                 - Male
+--------------------------------------------------
+_87 - en-IE-ConnorNeural                  - Male
+--------------------------------------------------
+_88 - en-IE-EmilyNeural                   - Female
+--------------------------------------------------
+_89 - en-KE-AsiliaNeural                  - Female
+--------------------------------------------------
+_90 - en-KE-ChilembaNeural                - Male
+--------------------------------------------------
+_91 - en-NZ-MitchellNeural                - Male
+--------------------------------------------------
+_92 - en-NZ-MollyNeural                   - Female
+--------------------------------------------------
+_93 - en-NG-AbeoNeural                    - Male
+--------------------------------------------------
+_94 - en-NG-EzinneNeural                  - Female
+--------------------------------------------------
+_95 - en-PH-JamesNeural                   - Male
+--------------------------------------------------
+_96 - en-PH-RosaNeural                    - Female
+--------------------------------------------------
+_97 - en-US-AvaNeural                     - Female
+--------------------------------------------------
+_98 - en-US-AndrewNeural                  - Male
+--------------------------------------------------
+_99 - en-US-EmmaNeural                    - Female
+--------------------------------------------------
+100 - en-US-BrianNeural                   - Male
+--------------------------------------------------
+101 - en-SG-LunaNeural                    - Female
+--------------------------------------------------
+102 - en-SG-WayneNeural                   - Male
+--------------------------------------------------
+103 - en-ZA-LeahNeural                    - Female
+--------------------------------------------------
+104 - en-ZA-LukeNeural                    - Male
+--------------------------------------------------
+105 - en-TZ-ElimuNeural                   - Male
+--------------------------------------------------
+106 - en-TZ-ImaniNeural                   - Female
+--------------------------------------------------
+107 - en-GB-LibbyNeural                   - Female
+--------------------------------------------------
+108 - en-GB-MaisieNeural                  - Female
+--------------------------------------------------
+109 - en-GB-RyanNeural                    - Male
+--------------------------------------------------
+110 - en-GB-SoniaNeural                   - Female
+--------------------------------------------------
+111 - en-GB-ThomasNeural                  - Male
+--------------------------------------------------
+112 - en-US-AnaNeural                     - Female
+--------------------------------------------------
+113 - en-US-AndrewMultilingualNeural      - Male
+--------------------------------------------------
+114 - en-US-AriaNeural                    - Female
+--------------------------------------------------
+115 - en-US-AvaMultilingualNeural         - Female
+--------------------------------------------------
+116 - en-US-BrianMultilingualNeural       - Male
+--------------------------------------------------
+117 - en-US-ChristopherNeural             - Male
+--------------------------------------------------
+118 - en-US-EmmaMultilingualNeural        - Female
+--------------------------------------------------
+119 - en-US-EricNeural                    - Male
+--------------------------------------------------
+120 - en-US-GuyNeural                     - Male
+--------------------------------------------------
+121 - en-US-JennyNeural                   - Female
+--------------------------------------------------
+122 - en-US-MichelleNeural                - Female
+--------------------------------------------------
+123 - en-US-RogerNeural                   - Male
+--------------------------------------------------
+124 - en-US-SteffanNeural                 - Male
+--------------------------------------------------
+125 - et-EE-AnuNeural                     - Female
+--------------------------------------------------
+126 - et-EE-KertNeural                    - Male
+--------------------------------------------------
+127 - fil-PH-AngeloNeural                 - Male
+--------------------------------------------------
+128 - fil-PH-BlessicaNeural               - Female
+--------------------------------------------------
+129 - fi-FI-HarriNeural                   - Male
+--------------------------------------------------
+130 - fi-FI-NooraNeural                   - Female
+--------------------------------------------------
+131 - fr-BE-CharlineNeural                - Female
+--------------------------------------------------
+132 - fr-BE-GerardNeural                  - Male
+--------------------------------------------------
+133 - fr-CA-ThierryNeural                 - Male
+--------------------------------------------------
+134 - fr-CA-AntoineNeural                 - Male
+--------------------------------------------------
+135 - fr-CA-JeanNeural                    - Male
+--------------------------------------------------
+136 - fr-CA-SylvieNeural                  - Female
+--------------------------------------------------
+137 - fr-FR-VivienneMultilingualNeural    - Female
+--------------------------------------------------
+138 - fr-FR-RemyMultilingualNeural        - Male
+--------------------------------------------------
+139 - fr-FR-DeniseNeural                  - Female
+--------------------------------------------------
+140 - fr-FR-EloiseNeural                  - Female
+--------------------------------------------------
+141 - fr-FR-HenriNeural                   - Male
+--------------------------------------------------
+142 - fr-CH-ArianeNeural                  - Female
+--------------------------------------------------
+143 - fr-CH-FabriceNeural                 - Male
+--------------------------------------------------
+144 - gl-ES-RoiNeural                     - Male
+--------------------------------------------------
+145 - gl-ES-SabelaNeural                  - Female
+--------------------------------------------------
+146 - ka-GE-EkaNeural                     - Female
+--------------------------------------------------
+147 - ka-GE-GiorgiNeural                  - Male
+--------------------------------------------------
+148 - de-AT-IngridNeural                  - Female
+--------------------------------------------------
+149 - de-AT-JonasNeural                   - Male
+--------------------------------------------------
+150 - de-DE-SeraphinaMultilingualNeural   - Female
+--------------------------------------------------
+151 - de-DE-FlorianMultilingualNeural     - Male
+--------------------------------------------------
+152 - de-DE-AmalaNeural                   - Female
+--------------------------------------------------
+153 - de-DE-ConradNeural                  - Male
+--------------------------------------------------
+154 - de-DE-KatjaNeural                   - Female
+--------------------------------------------------
+155 - de-DE-KillianNeural                 - Male
+--------------------------------------------------
+156 - de-CH-JanNeural                     - Male
+--------------------------------------------------
+157 - de-CH-LeniNeural                    - Female
+--------------------------------------------------
+158 - el-GR-AthinaNeural                  - Female
+--------------------------------------------------
+159 - el-GR-NestorasNeural                - Male
+--------------------------------------------------
+160 - gu-IN-DhwaniNeural                  - Female
+--------------------------------------------------
+161 - gu-IN-NiranjanNeural                - Male
+--------------------------------------------------
+162 - he-IL-AvriNeural                    - Male
+--------------------------------------------------
+163 - he-IL-HilaNeural                    - Female
+--------------------------------------------------
+164 - hi-IN-MadhurNeural                  - Male
+--------------------------------------------------
+165 - hi-IN-SwaraNeural                   - Female
+--------------------------------------------------
+166 - hu-HU-NoemiNeural                   - Female
+--------------------------------------------------
+167 - hu-HU-TamasNeural                   - Male
+--------------------------------------------------
+168 - is-IS-GudrunNeural                  - Female
+--------------------------------------------------
+169 - is-IS-GunnarNeural                  - Male
+--------------------------------------------------
+170 - id-ID-ArdiNeural                    - Male
+--------------------------------------------------
+171 - id-ID-GadisNeural                   - Female
+--------------------------------------------------
+172 - iu-Latn-CA-SiqiniqNeural            - Female
+--------------------------------------------------
+173 - iu-Latn-CA-TaqqiqNeural             - Male
+--------------------------------------------------
+174 - iu-Cans-CA-SiqiniqNeural            - Female
+--------------------------------------------------
+175 - iu-Cans-CA-TaqqiqNeural             - Male
+--------------------------------------------------
+176 - ga-IE-ColmNeural                    - Male
+--------------------------------------------------
+177 - ga-IE-OrlaNeural                    - Female
+--------------------------------------------------
+178 - it-IT-GiuseppeMultilingualNeural    - Male
+--------------------------------------------------
+179 - it-IT-DiegoNeural                   - Male
+--------------------------------------------------
+180 - it-IT-ElsaNeural                    - Female
+--------------------------------------------------
+181 - it-IT-IsabellaNeural                - Female
+--------------------------------------------------
+182 - ja-JP-KeitaNeural                   - Male
+--------------------------------------------------
+183 - ja-JP-NanamiNeural                  - Female
+--------------------------------------------------
+184 - jv-ID-DimasNeural                   - Male
+--------------------------------------------------
+185 - jv-ID-SitiNeural                    - Female
+--------------------------------------------------
+186 - kn-IN-GaganNeural                   - Male
+--------------------------------------------------
+187 - kn-IN-SapnaNeural                   - Female
+--------------------------------------------------
+188 - kk-KZ-AigulNeural                   - Female
+--------------------------------------------------
+189 - kk-KZ-DauletNeural                  - Male
+--------------------------------------------------
+190 - km-KH-PisethNeural                  - Male
+--------------------------------------------------
+191 - km-KH-SreymomNeural                 - Female
+--------------------------------------------------
+192 - ko-KR-HyunsuMultilingualNeural      - Male
+--------------------------------------------------
+193 - ko-KR-InJoonNeural                  - Male
+--------------------------------------------------
+194 - ko-KR-SunHiNeural                   - Female
+--------------------------------------------------
+195 - lo-LA-ChanthavongNeural             - Male
+--------------------------------------------------
+196 - lo-LA-KeomanyNeural                 - Female
+--------------------------------------------------
+197 - lv-LV-EveritaNeural                 - Female
+--------------------------------------------------
+198 - lv-LV-NilsNeural                    - Male
+--------------------------------------------------
+199 - lt-LT-LeonasNeural                  - Male
+--------------------------------------------------
+200 - lt-LT-OnaNeural                     - Female
+--------------------------------------------------
+201 - mk-MK-AleksandarNeural              - Male
+--------------------------------------------------
+202 - mk-MK-MarijaNeural                  - Female
+--------------------------------------------------
+203 - ms-MY-OsmanNeural                   - Male
+--------------------------------------------------
+204 - ms-MY-YasminNeural                  - Female
+--------------------------------------------------
+205 - ml-IN-MidhunNeural                  - Male
+--------------------------------------------------
+206 - ml-IN-SobhanaNeural                 - Female
+--------------------------------------------------
+207 - mt-MT-GraceNeural                   - Female
+--------------------------------------------------
+208 - mt-MT-JosephNeural                  - Male
+--------------------------------------------------
+209 - mr-IN-AarohiNeural                  - Female
+--------------------------------------------------
+210 - mr-IN-ManoharNeural                 - Male
+--------------------------------------------------
+211 - mn-MN-BataaNeural                   - Male
+--------------------------------------------------
+212 - mn-MN-YesuiNeural                   - Female
+--------------------------------------------------
+213 - ne-NP-HemkalaNeural                 - Female
+--------------------------------------------------
+214 - ne-NP-SagarNeural                   - Male
+--------------------------------------------------
+215 - nb-NO-FinnNeural                    - Male
+--------------------------------------------------
+216 - nb-NO-PernilleNeural                - Female
+--------------------------------------------------
+217 - ps-AF-GulNawazNeural                - Male
+--------------------------------------------------
+218 - ps-AF-LatifaNeural                  - Female
+--------------------------------------------------
+219 - fa-IR-DilaraNeural                  - Female
+--------------------------------------------------
+220 - fa-IR-FaridNeural                   - Male
+--------------------------------------------------
+221 - pl-PL-MarekNeural                   - Male
+--------------------------------------------------
+222 - pl-PL-ZofiaNeural                   - Female
+--------------------------------------------------
+223 - pt-BR-ThalitaMultilingualNeural     - Female
+--------------------------------------------------
+224 - pt-BR-AntonioNeural                 - Male
+--------------------------------------------------
+225 - pt-BR-FranciscaNeural               - Female
+--------------------------------------------------
+226 - pt-PT-DuarteNeural                  - Male
+--------------------------------------------------
+227 - pt-PT-RaquelNeural                  - Female
+--------------------------------------------------
+228 - ro-RO-AlinaNeural                   - Female
+--------------------------------------------------
+229 - ro-RO-EmilNeural                    - Male
+--------------------------------------------------
+230 - ru-RU-DmitryNeural                  - Male
+--------------------------------------------------
+231 - ru-RU-SvetlanaNeural                - Female
+--------------------------------------------------
+232 - sr-RS-NicholasNeural                - Male
+--------------------------------------------------
+233 - sr-RS-SophieNeural                  - Female
+--------------------------------------------------
+234 - si-LK-SameeraNeural                 - Male
+--------------------------------------------------
+235 - si-LK-ThiliniNeural                 - Female
+--------------------------------------------------
+236 - sk-SK-LukasNeural                   - Male
+--------------------------------------------------
+237 - sk-SK-ViktoriaNeural                - Female
+--------------------------------------------------
+238 - sl-SI-PetraNeural                   - Female
+--------------------------------------------------
+239 - sl-SI-RokNeural                     - Male
+--------------------------------------------------
+240 - so-SO-MuuseNeural                   - Male
+--------------------------------------------------
+241 - so-SO-UbaxNeural                    - Female
+--------------------------------------------------
+242 - es-AR-ElenaNeural                   - Female
+--------------------------------------------------
+243 - es-AR-TomasNeural                   - Male
+--------------------------------------------------
+244 - es-BO-MarceloNeural                 - Male
+--------------------------------------------------
+245 - es-BO-SofiaNeural                   - Female
+--------------------------------------------------
+246 - es-CL-CatalinaNeural                - Female
+--------------------------------------------------
+247 - es-CL-LorenzoNeural                 - Male
+--------------------------------------------------
+248 - es-CO-GonzaloNeural                 - Male
+--------------------------------------------------
+249 - es-CO-SalomeNeural                  - Female
+--------------------------------------------------
+250 - es-ES-XimenaNeural                  - Female
+--------------------------------------------------
+251 - es-CR-JuanNeural                    - Male
+--------------------------------------------------
+252 - es-CR-MariaNeural                   - Female
+--------------------------------------------------
+253 - es-CU-BelkysNeural                  - Female
+--------------------------------------------------
+254 - es-CU-ManuelNeural                  - Male
+--------------------------------------------------
+255 - es-DO-EmilioNeural                  - Male
+--------------------------------------------------
+256 - es-DO-RamonaNeural                  - Female
+--------------------------------------------------
+257 - es-EC-AndreaNeural                  - Female
+--------------------------------------------------
+258 - es-EC-LuisNeural                    - Male
+--------------------------------------------------
+259 - es-SV-LorenaNeural                  - Female
+--------------------------------------------------
+260 - es-SV-RodrigoNeural                 - Male
+--------------------------------------------------
+261 - es-GQ-JavierNeural                  - Male
+--------------------------------------------------
+262 - es-GQ-TeresaNeural                  - Female
+--------------------------------------------------
+263 - es-GT-AndresNeural                  - Male
+--------------------------------------------------
+264 - es-GT-MartaNeural                   - Female
+--------------------------------------------------
+265 - es-HN-CarlosNeural                  - Male
+--------------------------------------------------
+266 - es-HN-KarlaNeural                   - Female
+--------------------------------------------------
+267 - es-MX-DaliaNeural                   - Female
+--------------------------------------------------
+268 - es-MX-JorgeNeural                   - Male
+--------------------------------------------------
+269 - es-NI-FedericoNeural                - Male
+--------------------------------------------------
+270 - es-NI-YolandaNeural                 - Female
+--------------------------------------------------
+271 - es-PA-MargaritaNeural               - Female
+--------------------------------------------------
+272 - es-PA-RobertoNeural                 - Male
+--------------------------------------------------
+273 - es-PY-MarioNeural                   - Male
+--------------------------------------------------
+274 - es-PY-TaniaNeural                   - Female
+--------------------------------------------------
+275 - es-PE-AlexNeural                    - Male
+--------------------------------------------------
+276 - es-PE-CamilaNeural                  - Female
+--------------------------------------------------
+277 - es-PR-KarinaNeural                  - Female
+--------------------------------------------------
+278 - es-PR-VictorNeural                  - Male
+--------------------------------------------------
+279 - es-ES-AlvaroNeural                  - Male
+--------------------------------------------------
+280 - es-ES-ElviraNeural                  - Female
+--------------------------------------------------
+281 - es-US-AlonsoNeural                  - Male
+--------------------------------------------------
+282 - es-US-PalomaNeural                  - Female
+--------------------------------------------------
+283 - es-UY-MateoNeural                   - Male
+--------------------------------------------------
+284 - es-UY-ValentinaNeural               - Female
+--------------------------------------------------
+285 - es-VE-PaolaNeural                   - Female
+--------------------------------------------------
+286 - es-VE-SebastianNeural               - Male
+--------------------------------------------------
+287 - su-ID-JajangNeural                  - Male
+--------------------------------------------------
+288 - su-ID-TutiNeural                    - Female
+--------------------------------------------------
+289 - sw-KE-RafikiNeural                  - Male
+--------------------------------------------------
+290 - sw-KE-ZuriNeural                    - Female
+--------------------------------------------------
+291 - sw-TZ-DaudiNeural                   - Male
+--------------------------------------------------
+292 - sw-TZ-RehemaNeural                  - Female
+--------------------------------------------------
+293 - sv-SE-MattiasNeural                 - Male
+--------------------------------------------------
+294 - sv-SE-SofieNeural                   - Female
+--------------------------------------------------
+295 - ta-IN-PallaviNeural                 - Female
+--------------------------------------------------
+296 - ta-IN-ValluvarNeural                - Male
+--------------------------------------------------
+297 - ta-MY-KaniNeural                    - Female
+--------------------------------------------------
+298 - ta-MY-SuryaNeural                   - Male
+--------------------------------------------------
+299 - ta-SG-AnbuNeural                    - Male
+--------------------------------------------------
+300 - ta-SG-VenbaNeural                   - Female
+--------------------------------------------------
+301 - ta-LK-KumarNeural                   - Male
+--------------------------------------------------
+302 - ta-LK-SaranyaNeural                 - Female
+--------------------------------------------------
+303 - te-IN-MohanNeural                   - Male
+--------------------------------------------------
+304 - te-IN-ShrutiNeural                  - Female
+--------------------------------------------------
+305 - th-TH-NiwatNeural                   - Male
+--------------------------------------------------
+306 - th-TH-PremwadeeNeural               - Female
+--------------------------------------------------
+307 - tr-TR-EmelNeural                    - Female
+--------------------------------------------------
+308 - tr-TR-AhmetNeural                   - Male
+--------------------------------------------------
+309 - uk-UA-OstapNeural                   - Male
+--------------------------------------------------
+310 - uk-UA-PolinaNeural                  - Female
+--------------------------------------------------
+311 - ur-IN-GulNeural                     - Female
+--------------------------------------------------
+312 - ur-IN-SalmanNeural                  - Male
+--------------------------------------------------
+313 - ur-PK-AsadNeural                    - Male
+--------------------------------------------------
+314 - ur-PK-UzmaNeural                    - Female
+--------------------------------------------------
+315 - uz-UZ-MadinaNeural                  - Female
+--------------------------------------------------
+316 - uz-UZ-SardorNeural                  - Male
+--------------------------------------------------
+317 - vi-VN-HoaiMyNeural                  - Female
+--------------------------------------------------
+318 - vi-VN-NamMinhNeural                 - Male
+--------------------------------------------------
+319 - cy-GB-AledNeural                    - Male
+--------------------------------------------------
+320 - cy-GB-NiaNeural                     - Female
+--------------------------------------------------
+321 - zu-ZA-ThandoNeural                  - Female
+--------------------------------------------------
+322 - zu-ZA-ThembaNeural                  - Male
+==================================================
+
+==================================================
+Voices: 
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-AU, WilliamNeural)', 'ShortName': 'en-AU-WilliamNeural', 'Gender': 'Male', 'Locale': 'en-AU', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft William Online (Natural) - English (Australia)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-CA, LiamNeural)', 'ShortName': 'en-CA-LiamNeural', 'Gender': 'Male', 'Locale': 'en-CA', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Liam Online (Natural) - English (Canada)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-HK, SamNeural)', 'ShortName': 'en-HK-SamNeural', 'Gender': 'Male', 'Locale': 'en-HK', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Sam Online (Natural) - English (Hongkong)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-IN, PrabhatNeural)', 'ShortName': 'en-IN-PrabhatNeural', 'Gender': 'Male', 'Locale': 'en-IN', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Prabhat Online (Natural) - English (India)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-IE, ConnorNeural)', 'ShortName': 'en-IE-ConnorNeural', 'Gender': 'Male', 'Locale': 'en-IE', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Connor Online (Natural) - English (Ireland)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-KE, ChilembaNeural)', 'ShortName': 'en-KE-ChilembaNeural', 'Gender': 'Male', 'Locale': 'en-KE', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Chilemba Online (Natural) - English (Kenya)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-NZ, MitchellNeural)', 'ShortName': 'en-NZ-MitchellNeural', 'Gender': 'Male', 'Locale': 'en-NZ', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Mitchell Online (Natural) - English (New Zealand)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-NG, AbeoNeural)', 'ShortName': 'en-NG-AbeoNeural', 'Gender': 'Male', 'Locale': 'en-NG', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Abeo Online (Natural) - English (Nigeria)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-PH, JamesNeural)', 'ShortName': 'en-PH-JamesNeural', 'Gender': 'Male', 'Locale': 'en-PH', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft James Online (Natural) - English (Philippines)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, AndrewNeural)', 'ShortName': 'en-US-AndrewNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Andrew Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['Conversation', 'Copilot'], 'VoicePersonalities': ['Warm', 'Confident', 'Authentic', 'Honest']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, BrianNeural)', 'ShortName': 'en-US-BrianNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Brian Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['Conversation', 'Copilot'], 'VoicePersonalities': ['Approachable', 'Casual', 'Sincere']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-SG, WayneNeural)', 'ShortName': 'en-SG-WayneNeural', 'Gender': 'Male', 'Locale': 'en-SG', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Wayne Online (Natural) - English (Singapore)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-ZA, LukeNeural)', 'ShortName': 'en-ZA-LukeNeural', 'Gender': 'Male', 'Locale': 'en-ZA', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Luke Online (Natural) - English (South Africa)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-TZ, ElimuNeural)', 'ShortName': 'en-TZ-ElimuNeural', 'Gender': 'Male', 'Locale': 'en-TZ', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Elimu Online (Natural) - English (Tanzania)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-GB, RyanNeural)', 'ShortName': 'en-GB-RyanNeural', 'Gender': 'Male', 'Locale': 'en-GB', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Ryan Online (Natural) - English (United Kingdom)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-GB, ThomasNeural)', 'ShortName': 'en-GB-ThomasNeural', 'Gender': 'Male', 'Locale': 'en-GB', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Thomas Online (Natural) - English (United Kingdom)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['General'], 'VoicePersonalities': ['Friendly', 'Positive']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, AndrewMultilingualNeural)', 'ShortName': 'en-US-AndrewMultilingualNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft AndrewMultilingual Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['Conversation', 'Copilot'], 'VoicePersonalities': ['Warm', 'Confident', 'Authentic', 'Honest']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, BrianMultilingualNeural)', 'ShortName': 'en-US-BrianMultilingualNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft BrianMultilingual Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['Conversation', 'Copilot'], 'VoicePersonalities': ['Approachable', 'Casual', 'Sincere']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, ChristopherNeural)', 'ShortName': 'en-US-ChristopherNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Christopher Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['News', 'Novel'], 'VoicePersonalities': ['Reliable', 'Authority']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, EricNeural)', 'ShortName': 'en-US-EricNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Eric Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['News', 'Novel'], 'VoicePersonalities': ['Rational']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, GuyNeural)', 'ShortName': 'en-US-GuyNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Guy Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['News', 'Novel'], 'VoicePersonalities': ['Passion']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, RogerNeural)', 'ShortName': 'en-US-RogerNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Roger Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['News', 'Novel'], 'VoicePersonalities': ['Lively']}, 'Language': 'en'}
+--------------------------------------------------
+{'Name': 'Microsoft Server Speech Text to Speech Voice (en-US, SteffanNeural)', 'ShortName': 'en-US-SteffanNeural', 'Gender': 'Male', 'Locale': 'en-US', 'SuggestedCodec': 'audio-24khz-48kbitrate-mono-mp3', 'FriendlyName': 'Microsoft Steffan Online (Natural) - English (United States)', 'Status': 'GA', 'VoiceTag': {'ContentCategories': ['News', 'Novel'], 'VoicePersonalities': ['Rational']}, 'Language': 'en'}
+==================================================

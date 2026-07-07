@@ -1,172 +1,134 @@
-# Learning 'ollama' Package
+# 📊 دستیار هوشمند اوراق گام
 
-## This program was developed by
-
-- **Dariush Tasdighi**
-  - Cell Phone Number: (+98)-9121087461
-  - Email Address: <DariushT@GMail.com>
-  - Telegram ID: <https://t.me/Dariush_Tasdighi>
-  - LinkedIn: <https://www.linkedin.com/in/tasdighi>
-  - Telegram Channels
-    - <https://t.me/IranianExperts>
-    - <https://t.me/DT_PYTHON_LEARNING>
-
-## Used Packages
-
-### 'rich' package
-
-- <https://pypi.org/project/rich>
-- <https://github.com/Textualize/rich>
-- **More:**
-  - Site: <https://rich.readthedocs.io/en/latest>
-
-### 'ollama' package
-
-- <https://pypi.org/project/ollama>
-- <https://github.com/ollama/ollama-python>
-- **More:**
-  - Site: <https://ollama.com>
-
-### 'googletrans' package
-
-- <https://pypi.org/project/googletrans>
-- <https://github.com/ssut/py-googletrans>
-
-### 'dotenv-python' package
-
-- <https://pypi.org/project/dotenv-python>
-- <https://github.com/TsuiJie/dotenv-python>
-
-### 'deep-translator' package
-
-- <https://pypi.org/project/deep-translator>
-- <https://github.com/nidhaloff/deep-translator>
-
-## References
-
-- Package: 'googletrans'
-  - دارد Conflict این کتابخانه خیلی مشهور است، ولی متاسفانه
-
-- Package: 'deep-translator'
-  - <https://deep-translator.readthedocs.io/en/latest>
-
-## Setup Environment
-
-```bash
-# python -m venv .venv
-py -3.14 -m venv .venv.3.14
-```
-
-```bash
-# .\.venv\Scripts\activate
-.\.venv.3.14\Scripts\activate
-```
-
-```bash
-python -m pip install -r .\requirements.txt -U
-```
-
-```bash
-python -m pip list
-```
-
-```bash
-python -m pip install -U pip
-```
-
-```bash
-python -m pip install -U rich
-```
-
-```bash
-python -m pip install -U ollama
-```
-
-```bash
-python -m pip install -U python-dotenv
-```
-
-```bash
-python -m pip install -U deep-translator
-```
-
-```bash
-python -m pip list
-```
-
-Now! We Create / Modify / Delete / Run the Source Codes...
-
-```bash
-deactivate
-```
-
-## Notes
-
-- نکته بسیار مهم! برای بر طرف کردن تداخل کتابخانه‌ها
-- به طور هم‌زمان، نسبت به نصب کتابخانه‌ها، اقدام می‌کنیم
-  - python -m pip install -U ollama deep-translator
-
-## Download & Install CUDA Toolkit (If you have a Nvidia GPU)
-
-- In Windows PowerShell:
-  - check the Nvidia (CUDA) version and VRAM, with below command:
-    - nvidia-smi.exe
-
-- Compare:
-  - <https://www.tomshardware.com/reviews/gpu-hierarchy,4388.html>
-  - <https://www.nvidia.com/en-us/geforce/graphics-cards/compare>
-  - <https://benchmarks.ul.com/compare/best-gpus>
-  - <https://benchmarks.ul.com/hardware/gpu/NVIDIA%20GeForce%20GTX%201650%20Ti%20(Notebook)>
-
-- [nvidia.com](https://developer.nvidia.com/cuda-downloads)
-  - Operating System: Windows
-  - Architecture: x86_64
-  - Version: 11
-  - Installer Type: exe (local)
-    - Download (3.0 GB)
-      - cuda_12.6.2_560.94_windows.exe
-      - [nvidia.com](https://developer.download.nvidia.com/compute/cuda/12.6.2/local_installers/cuda_12.6.2_560.94_windows.exe)
-- [OR]
-- winget install "Nvidia.CUDA"
-
-- You should set the path for 'nvcc.exe' file:
-  - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin
-    - nvcc --version
-
-### Go to HaggingFace site and create a Access Token
-
-- [https://huggingface.co](https://huggingface.co)
-
-- First Register and Login
-- Select your model and 'Accept the License Agreement'
-
-- Click on Left Top Circle!
-- Click on 'Settings' menu item
-- Click on 'Access Tokens' anchor
-- Click on 'Create new Access Token' button
-- Set 'Token name'
-- Set 'Read access to contents of all public gated repos you can access' checkbox
-- Click on 'Copy' button
-
-- In PowerShell:
-- pip install huggingface-hub
-- huggingface-cli login
-- Ask for 'Access Token': Right+Click -> For Pasting
-
-## Learning Order
-
-- learn.py
-- app.py
-  - dt_ollama.py
-  - dt_llm_utility.py
-- display_all_downloaded_models.py
-- update_all_downloaded_models.py
-- dictionary.py
-  - dictionary_constants.py
-- translator.py
-  - translator_constants.py
-- generate_code.py
-  - generate_code_constants.py
-- learning_json.py
+پروژه گزارش‌گیری هوشمند از جدول مشتریان اوراق گام با استفاده از **Llama 3.1:8b** و **Streamlit**
 
 ---
+
+## 📁 ساختار پروژه
+
+```
+TTS-AI/
+│
+├── streamlit_app.py # فایل اصلی Streamlit (UI)
+├── gam_constants.py # ثابت‌ها و تنظیمات
+├── gam_functions.py # توابع کمکی (بارگذاری داده، ساخت prompt)
+├── dt_ollama.py # ماژول ارتباط با Ollama
+├── dt_tts_edge.py # ماژول تبدیل متن به گفتار (Text-to-Speech)
+├── dt_utility.py # توابع کمکی عمومی
+├── requirements.txt # پکیج‌های مورد نیاز
+├── README.md # این فایل
+│
+├── data/
+│ └── درخواست_کالای_مشتریان_1405_04_09.xlsx # فایل اکسل مشتریان
+│
+└── temp/ # پوشه موقت برای فایل‌های صوتی (به‌صورت خودکار ساخته می‌شود)
+```
+
+---
+
+## ⚙️ پیش‌نیازها
+
+### ۱. نصب Ollama
+از سایت [ollama.com](https://ollama.com) دانلود و نصب کنید.
+
+### ۲. دانلود مدل Llama 3.1:8b
+```bash
+ollama pull llama3.1:8b
+```
+
+### ۳. نصب پکیج‌های Python
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ساخت محیط مجازی با نام .venv
+python -m venv .venv
+
+# یا با نسخه خاص پایتون
+py -3.13 -m venv .venv
+
+## 🚀 اجرای پروژه
+
+```bash
+streamlit run ./streamlit_app.py
+```
+
+---
+
+.\.venv\Scripts\Activate.ps1
+
+
+.\.venv\Scripts\activate.bat
+
+
+source .venv/bin/activate
+
+---
+
+# نمایش لیست پکیج‌های نصب شده
+pip list
+
+# بررسی نصب edge-tts
+python -c "from edge_tts import Communicate; print('✅ edge-tts installed successfully!')"
+
+# بررسی نصب streamlit
+streamlit --version
+
+---
+
+## 📂 مراحل راه‌اندازی
+
+1. پوشه `data/` را بسازید
+2. فایل اکسل مشتریان را داخل پوشه `data/` کپی کنید
+3. Ollama را اجرا کنید: `ollama serve`
+4. پروژه را اجرا کنید: `streamlit run ./streamlit_app.py`
+
+---
+
+## 💬 نمونه سوالات
+
+| سوال | توضیح |
+|------|-------|
+| کلاً از چند استان تماس گیرنده داشتیم؟ | آمار کلی استان‌ها |
+| چند متقاضی حقیقی و حقوقی داریم؟ | تفکیک نوع متقاضیان |
+| چه اشخاصی از استان مازندران تماس گرفته‌اند؟ | فیلتر بر اساس استان |
+| اقدامات انجام شده برای آقای روحی مقدم؟ | جزئیات یک شخص خاص |
+| چه کالاهایی درخواست شده است؟ | آمار انواع کالا |
+| چند نفر تامین کننده دارند؟ | آمار وضعیت تامین کننده |
+
+---
+
+## 🏗️ معماری
+
+```
+کاربر → Streamlit UI → gam_functions.py → dt_ollama.py → Ollama (llama3.1:8b)
+                              ↑
+                    داده‌های اکسل (system prompt)
+                              ↓
+                    dt_tts_edge.py → پخش صوتی پاسخ
+```
+
+### نحوه کار:
+- داده‌های کامل اکسل در **system prompt** به مدل ارسال می‌شود
+- مدل با دسترسی کامل به جدول، سوالات را پاسخ می‌دهد
+- تاریخچه گفتگو در **session_state** نگهداری می‌شود
+
+---
+
+## ⚙️ تنظیمات (در `gam_constants.py`)
+
+| متغیر | مقدار پیش‌فرض | توضیح |
+|-------|--------------|-------|
+| `MODEL_NAME` | `llama3.1:8b` | نام مدل Ollama |
+| `EXCEL_FILE_PATH` | `./data/...xlsx` | مسیر فایل اکسل |
+| `SHOW_TOKEN_INFO` | `False` | نمایش تعداد توکن |
+
+---
+
+## 📝 نکات مهم
+
+- **شماره تماس:** در جدول موجود نیست؛ مدل این را به کاربر توضیح می‌دهد
+- **دما (Temperature):** روی `0.3` تنظیم شده برای دقت بیشتر در تحلیل داده
+- **کش داده:** DataFrame یک‌بار بارگذاری و در session_state ذخیره می‌شود
