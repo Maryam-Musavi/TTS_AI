@@ -72,9 +72,50 @@ Read the [Python pre-computation] block in the user message — it contains EXAC
    report that clearly: e.g. "برای این شخص هیچ اقدامی در سیستم ثبت نشده است."
 4. If pre-computation provides an action text, quote it in full.
 5. Phone numbers are NOT stored in this table.
-6. For actions analysis: summarise patterns (who has actions, who doesn't, key outcomes).
-7. For goods analysis: report each category with exact count and names.
-8. Be concise and direct. No preamble like "based on the data...".
+6. Be concise and direct. No preamble like "based on the data...".
+
+## List formatting — MANDATORY
+Whenever your answer includes 2 or more names (or any itemised list), you MUST print
+each item on its own separate line, using a leading dash "- ". NEVER put multiple
+names on the same line separated by spaces or commas.
+
+Correct:
+- آقای تنزیلی
+- آقای آزمون
+- آقای رمضانی
+
+Incorrect (never do this):
+آقای تنزیلی آقای آزمون آقای رمضانی
+
+The pre-computation data is already formatted this way (one name per line) —
+simply preserve that structure in your reply; do not merge lines together.
+
+## Deep table-analysis guidance (when asked for "تحلیل کلی" / "گزارش" / "خلاصه" / "نظر کلی مشتریان" / "جمع‌بندی")
+The pre-computation for these questions starts with an "OVERALL SNAPSHOT" block plus
+"MOST-REQUESTED GOODS" and "DOMINANT THEMES IN CUSTOMER ACTIONS" — all with EXACT
+Python-verified counts AND percentages. This is your PRIMARY material.
+
+**Structure your answer as a high-level narrative, NOT a case-by-case list:**
+1. Start with 1-2 sentences on overall coverage (e.g. "از ۵۰ مشتری، ۳۸ نفر (۷۶٪) دارای
+   اقدام ثبت‌شده هستند").
+2. State the dominant/most common patterns using their exact percentages, phrased
+   naturally: "اکثر مشتریانی که کالا مشخص کرده‌اند (X از Y نفر، Z٪) متقاضی ... هستند"
+   or "شایع‌ترین موضوع در اقدامات ثبت‌شده ... است که Z٪ از مشتریان دارای اقدام را
+   شامل می‌شود".
+3. Cover the top 2-4 dominant themes from "DOMINANT THEMES IN CUSTOMER ACTIONS" —
+   these already come pre-sorted from most to least frequent, so lead with the
+   first ones. Skip themes with 0 matches.
+4. Only mention individual customer names as brief supporting examples (e.g. "مانند
+   آقای X و آقای Y") — do NOT produce a long itemised list of every single name in
+   every category. The detailed per-theme name lists further down the
+   pre-computation are for follow-up questions, not for this summary answer.
+5. Never claim a pattern is "اکثر" (majority) unless its percentage in the data
+   actually exceeds 50%; for smaller percentages use accurate language like
+   "بخشی از مشتریان (Z٪)" or "شایع‌ترین موضوع (اما نه اکثریت)".
+
+If the user instead asks a SPECIFIC/narrow question (e.g. "چه کسانی نرخ تنزیل بالا
+را مشکل دانسته‌اند؟"), you MAY use the detailed itemised list with full quotes from
+the "Thematic pattern analysis" section.
 
 ## Table columns (reference)
 - ردیف              : row number
@@ -126,18 +167,3 @@ STREAMLIT_STYLE: Final[str] = """
     }
 </style>
 """
-# ==================================================
-# تنظیمات تبدیل متن به گفتار (TTS)
-# ==================================================
-
-# صداها
-TTS_VOICE_FEMALE: Final[str] = "fa-IR-DilaraNeural"   # صدای زنانه
-TTS_VOICE_MALE: Final[str]   = "fa-IR-FaridNeural"    # صدای مردانه
-
-# تنظیمات صدا
-TTS_RATE: Final[str]   = "+5%"    # سرعت خواندن
-TTS_PITCH: Final[str]  = "-5Hz"  # زیر و بمی صدا
-TTS_VOLUME: Final[str] = "+20%"   # بلندی صدا
-
-# پوشه ذخیره فایل‌های صوتی موقت
-TTS_TEMP_DIR: Final[str] = "./temp"
